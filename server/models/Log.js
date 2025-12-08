@@ -4,9 +4,20 @@ const LogSchema = new mongoose.Schema(
   {
     adminId: { type: String, required: true },
     adminName: { type: String, required: true },
-    action: { type: String, required: true }, // e.g., "DELETE_USER", "SEND_BROADCAST"
-    target: { type: String }, // e.g., "User: John Doe" or "Event: Tech Talk"
-    details: { type: String },
+    action: { 
+      type: String, 
+      required: true,
+      enum: ["CREATE_USER", "DELETE_USER", "UPDATE_USER", "SEND_BROADCAST", "CREATE_EVENT", "DELETE_EVENT"]
+    },
+    target: {
+      type: {
+        entity: String, // e.g., "User", "Event"
+        id: String,     // e.g., "12345"
+      },
+      default: null
+    },
+    details: { type: String, default: "" },
+    meta: { type: mongoose.Schema.Types.Mixed } // store any extra info
   },
   { timestamps: true }
 );
