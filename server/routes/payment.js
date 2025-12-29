@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post("/create-checkout-session", verifyToken, createCheckoutSession);
 
-export default router;
+export default router; // Payment Controller for Stripe Integration
