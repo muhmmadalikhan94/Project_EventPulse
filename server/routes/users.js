@@ -1,0 +1,43 @@
+import express from "express";
+import { 
+    getUser, 
+    getAllUsers, 
+    deleteUser, 
+    updateUser, 
+    toggleFollow,       // <--- CHANGED FROM addRemoveFriend
+    getUserRecommendations,
+    toggleBookmark,      
+    getBookmarkedEvents 
+} from "../controllers/users.js";
+import { verifyToken } from "../middleware/auth.js";
+import multer from "multer";
+import storage from "../config/cloudinary.js"; // ✅ Import Cloud Configuration
+
+const router = express.Router();
+
+// ✅ USE CLOUDINARY STORAGE
+const upload = multer({ storage });
+
+/* READ ROUTES */
+router.get("/:id", verifyToken, getUser);
+router.get("/", verifyToken, getAllUsers);
+
+// NEW RECOMMENDATIONS ROUTE
+router.get("/:id/recommendations", verifyToken, getUserRecommendations);
+
+/* NEW BOOKMARK ROUTES */
+router.get("/:id/bookmarks", verifyToken, getBookmarkedEvents); // Get saved events
+router.patch("/:id/bookmark/:eventId", verifyToken, toggleBookmark); // Toggle save/unsave
+
+/* DELETE ROUTE */
+router.delete("/:id", verifyToken, deleteUser);
+
+/* UPDATE ROUTES */
+
+// CHANGED: Follow Logic (One-way)
+router.patch("/:id/follow/:targetId", verifyToken, toggleFollow); 
+
+// ✅ 'upload.single' sends the profile picture to the cloud
+router.patch("/:id", verifyToken, upload.single("picture"), updateUser);
+
+export default router;
