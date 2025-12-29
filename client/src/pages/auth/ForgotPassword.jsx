@@ -6,6 +6,9 @@ import { Mail, ArrowLeft } from "lucide-react"; // Added icons for better UI
 // 🎯 IMPORT THE ENV VARIABLE FOR API URL
 const API_URL = import.meta.env.VITE_API_URL; 
 
+
+
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
