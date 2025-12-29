@@ -1,9 +1,12 @@
+
+
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, CalendarX } from "lucide-react"; // Added CalendarX for empty state
 
-// 🎯 IMPORT THE ENV VARIABLE FOR API URL
+
 const API_URL = import.meta.env.VITE_API_URL; 
 
 const Recommendations = ({ userId, token }) => {

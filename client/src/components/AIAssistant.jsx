@@ -1,10 +1,11 @@
+
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Send, X, Bot, User, Minus } from "lucide-react";
 import axios from "axios";
 import { getImageUrl } from "../utils/imageHelper";
 
-// 🎯 IMPORT THE ENV VARIABLE FOR API URL
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 const AIAssistant = ({ token, user }) => {

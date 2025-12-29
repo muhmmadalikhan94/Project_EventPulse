@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 import Event from "../models/Event.js";
 
+
+
 export const chatWithAI = async (req, res) => {
   try {
     const { message } = req.body;
