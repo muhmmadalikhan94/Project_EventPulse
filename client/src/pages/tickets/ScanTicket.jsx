@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 // 🎯 IMPORT THE ENV VARIABLE FOR API URL
 const API_URL = import.meta.env.VITE_API_URL;
 
+
+
+
 const ScanTicket = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
